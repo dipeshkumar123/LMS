@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - EduMaster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #00c3ff;
+            --accent-color: #ff6b6b;
+            --background-light: #f9f9f9;
+            --text-dark: #333;
+            --text-light: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --sidebar-width: 250px;
+            --sidebar-collapsed-width: 80px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            min-height: 100vh;
+            transition: grid-template-columns 0.3s;
+        }
+
+        .dashboard-container.collapsed {
+            grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .navbar .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .navbar .profile span {
+            font-size: 1rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            box-shadow: var(--shadow);
+            transition: width 0.3s;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .sidebar ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .sidebar ul li a i {
+            font-size: 1.5rem;
+        }
+
+        .sidebar.collapsed ul li a span {
+            display: none;
+        }
+
+        .sidebar.collapsed h2 {
+            display: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            background: var(--background-light);
+        }
+
+        .welcome-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .welcome-section h1 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .welcome-section p {
+            color: #666;
+        }
+
+        .courses-section, .progress-section {
+            margin-top: 2rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            height: 150px;
+            background: #ddd;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-info {
+            padding: 1.5rem;
+        }
+
+        .course-info h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .course-info p {
+            color: #666;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            margin-top: 1rem;
+        }
+
+        .progress-bar-fill {
+            background: var(--secondary-color);
+            height: 100%;
+            border-radius: 10px;
+            width: 60%; /* Example progress */
+        }
+
+        /* Collapse Button */
+        .collapse-btn {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            background: var(--secondary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .collapse-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: var(--sidebar-width);
+                height: 100vh;
+                z-index: 1000;
+                transition: left 0.3s;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .collapse-btn {
+                display: none; /* Hide collapse button on mobile */
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .navbar .logo {
+                font-size: 1.2rem;
+            }
+
+            .navbar .profile span {
+                display: none;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Container -->
+    <div class="dashboard-container" id="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h2>EduMaster</h2>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li><a href="#"><i class="fas fa-book"></i><span>My Courses</span></a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+                <li><a href="#"><i class="fas fa-bell"></i><span>Notifications</span></a></li>
+                <li><a href="#"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navigation Bar -->
+            <div class="navbar">
+                <div class="logo">EduMaster Dashboard</div>
+                <div class="profile">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Picture">
+                    <span>John Doe</span>
+                    <button class="collapse-btn" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1>Welcome Back, John!</h1>
+                <p>Continue your learning journey with EduMaster. Check out your courses and track your progress.</p>
+            </div>
+
+            <!-- Enrolled Courses Section -->
+            <div class="courses-section">
+                <h2>Enrolled Courses</h2>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931" alt="Web Development">
+                        </div>
+                        <div class="course-info">
+                            <h3>Full Stack Web Development</h3>
+                            <p>Master HTML, CSS, JavaScript, and modern frameworks.</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1618477388954-7852f32655ec" alt="Data Science">
+                        </div>
+                        <div class="course-info">
+                            <h3>Data Science & Analytics</h3>
+                            <p>Learn Python, machine learning, and data visualization.</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <h2>Your Progress</h2>
+                <div class="progress-card">
+                    <p>Overall Completion: 60%</p>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collapse Button -->
+    <button class="collapse-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <script>
+        // Toggle Sidebar Collapse
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
