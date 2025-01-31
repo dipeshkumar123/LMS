@@ -85,6 +85,7 @@
             position: sticky;
             top: 0;
             height: 100vh;
+            overflow-y: auto;
         }
 
         .sidebar.collapsed {
@@ -136,6 +137,7 @@
         /* Main Content */
         .main-content {
             padding: 2rem;
+            background: var(--background-light);
         }
 
         .welcome-section {
@@ -229,6 +231,11 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
         }
 
         .collapse-btn i {
@@ -242,11 +249,44 @@
             }
 
             .sidebar {
-                display: none; /* Hide sidebar on mobile */
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: var(--sidebar-width);
+                z-index: 1000;
+                transition: left 0.3s;
+            }
+
+            .sidebar.active {
+                left: 0;
             }
 
             .collapse-btn {
                 display: none; /* Hide collapse button on mobile */
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .navbar .logo {
+                font-size: 1.2rem;
+            }
+
+            .navbar .profile span {
+                display: none;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .welcome-section {
+                padding: 1rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -261,6 +301,8 @@
                 <li><a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
                 <li><a href="#"><i class="fas fa-book"></i><span>My Courses</span></a></li>
                 <li><a href="#"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+                <li><a href="#"><i class="fas fa-calendar"></i><span>Calendar</span></a></li>
+                <li><a href="#"><i class="fas fa-comments"></i><span>Messages</span></a></li>
                 <li><a href="#"><i class="fas fa-cog"></i><span>Settings</span></a></li>
                 <li><a href="#"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
             </ul>
@@ -274,6 +316,9 @@
                 <div class="profile">
                     <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Picture">
                     <span>John Doe</span>
+                    <button class="collapse-btn" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </div>
 
@@ -339,6 +384,12 @@
             const sidebar = document.getElementById('sidebar');
             dashboardContainer.classList.toggle('collapsed');
             sidebar.classList.toggle('collapsed');
+        }
+
+        // Mobile Sidebar Toggle
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
         }
     </script>
 </body>
