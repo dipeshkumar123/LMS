@@ -1,3 +1,4 @@
+/* Style reset and global styles  */
 * {
     margin: 0;
     padding: 0;
@@ -406,7 +407,7 @@ footer {
 
 
 
-/* Enhanced Global Styles */
+/* Global Styles */
 :root {
     --primary-color: #1e3c72;
     --secondary-color: #00c3ff;
@@ -424,7 +425,7 @@ body {
     line-height: 1.6;
 }
 
-/* Enhanced Header */
+/* Header */
 header {
     background: var(--gradient-primary);
     box-shadow: var(--shadow);
@@ -449,7 +450,7 @@ nav a:hover::after {
     width: 100%;
 }
 
-/* Enhanced Hero Section */
+/* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                 url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6') center/cover;
@@ -472,7 +473,7 @@ nav a:hover::after {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced Features Section */
+/* Features Section */
 .feature-card {
     background: white;
     border-radius: 15px;
@@ -493,7 +494,7 @@ nav a:hover::after {
     color: transparent;
 }
 
-/* Enhanced Courses Section */
+/* Courses Section */
 .course-card {
     border: 1px solid #e0e0e0;
     transition: all 0.3s;
@@ -503,7 +504,7 @@ nav a:hover::after {
     border-color: var(--secondary-color);
 }
 
-/* Enhanced Testimonials Section */
+/* Testimonials Section */
 .testimonials {
     background: var(--background-light);
 }
@@ -518,7 +519,7 @@ nav a:hover::after {
     transform: translateY(-5px);
 }
 
-/* Enhanced Pricing Section */
+/* Pricing Section */
 .price-card {
     background: white;
     border: 1px solid #e0e0e0;
@@ -537,7 +538,7 @@ nav a:hover::after {
     color: transparent;
 }
 
-/* Enhanced About Section */
+/* About Section */
 .about {
     background: var(--background-light);
 }
@@ -547,7 +548,7 @@ nav a:hover::after {
     box-shadow: var(--shadow);
 }
 
-/* Enhanced Footer */
+/* Footer */
 footer {
     background: var(--gradient-primary);
 }

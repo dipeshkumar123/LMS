@@ -10,8 +10,7 @@
 </head>
 
 <body>
-    <!-- Update the header for mobile menu -->
-    <!-- Add Login/Signup Buttons to Header -->
+    <!-- navigation section  -->
     <header>
         <div class="nav-container">
             <div class="logo">
@@ -33,7 +32,7 @@
         </div>
     </header>
 
-    <!-- Add Auth Modal -->
+    <!-- login and signup section  -->
     <div id="auth-modal" class="auth-modal">
         <div class="auth-modal-content">
             <span class="close-modal" onclick="closeAuthModal()">&times;</span>
@@ -60,7 +59,7 @@
         </div>
     </div>
 
-    <!-- Enhanced Hero Section -->
+    <!-- Hero section  -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Transform Your Future With Online Learning</h1>
@@ -107,7 +106,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Features Section -->
+    <!-- Features section  -->
     <section class="features">
         <h2 class="section-title">Why Choose EduMaster?</h2>
         <div class="feature-grid">
@@ -129,7 +128,7 @@
         </div>
     </section>
 
-
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="about-content">
             <div>
@@ -147,7 +146,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Testimonials Section -->
+    <!-- Testimonials Section -->
     <section class="testimonials">
         <h2 class="section-title">What Our Students Say</h2>
         <div class="testimonial-grid">
@@ -178,7 +177,7 @@
     </section>
 
 
-    <!-- Enhanced Pricing Section -->
+    <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <h2 class="section-title">Affordable Pricing Plans</h2>
         <div class="pricing-grid">
@@ -206,6 +205,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-container">
@@ -230,7 +230,7 @@
         </div>
     </section>
 
-
+    <!-- Footer Section -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -259,47 +259,8 @@
         </div>
     </footer>
 
-    <!-- Add JavaScript for mobile menu -->
-    <script>
-        function toggleMenu() {
-            const nav = document.querySelector('.nav-links');
-            nav.classList.toggle('active');
-        }
-
-
-        // Auth Modal Functions
-        function openAuthModal(formType) {
-            const modal = document.getElementById('auth-modal');
-            modal.style.display = 'flex';
-            switchAuthForm(formType);
-        }
-
-        function closeAuthModal() {
-            const modal = document.getElementById('auth-modal');
-            modal.style.display = 'none';
-        }
-
-        function switchAuthForm(formType) {
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-
-            if (formType === 'login') {
-                loginForm.style.display = 'block';
-                signupForm.style.display = 'none';
-            } else if (formType === 'signup') {
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'block';
-            }
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function (event) {
-            const modal = document.getElementById('auth-modal');
-            if (event.target === modal) {
-                closeAuthModal();
-            }
-        };
-    </script>
+    <!-- JavaScript for mobile menu -->
+    <script src="script.js"></script>
 </body>
 
 </html>
