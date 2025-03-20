@@ -12,53 +12,107 @@ document.addEventListener('DOMContentLoaded', () => {
     const overallProgressBar = document.getElementById('overall-progress-bar');
 
     function loadUserData() {
-        const user = mockData.user;
-        userName.textContent = user.name;
-        userProfilePicture.src = user.profilePicture;
-        userRole.textContent = user.role;
-        userEmail.textContent = user.email;
-        userNameDropdown.textContent = user.name;
-        userProfilePictureDropdown.src = user.profilePicture;
-        userRole.textContentDropdown = user.role;
-        overallProgress.textContent = `${user.overallProgress}%`;
-        overallProgressBar.style.width = `${user.overallProgress}%`;
+        try {
+            const user = mockData.user;
+    
+            if (!user) throw new Error("User data not found.");
+    
+            userName.textContent = user.name;
+            userProfilePicture.src = user.profilePicture;
+            userRole.textContent = user.role;
+            userEmail.textContent = user.email;
+            userNameDropdown.textContent = user.name;
+            userProfilePictureDropdown.src = user.profilePicture;
+            overallProgress.textContent = `${user.overallProgress}%`;
+            overallProgressBar.style.width = `${user.overallProgress}%`;
+        } catch (error) {
+            console.error("Error loading user data:", error);
+            document.querySelector('.main-content').innerHTML = `
+                <p class="error-message">Failed to load user data. Please try again later.</p>
+            `;
+        }
     }
+    
     
 
     function loadCourses() {
-        const courses = mockData.courses;
-        coursesGrid.innerHTML = ''; // Clear previous content
+        try {
+            const courses = mockData.courses;
+            if (!courses || courses.length === 0) throw new Error("No courses available.");
     
-        courses.forEach(course => {
-            const courseHTML = `
-                <article class="course-card">
-                    <div class="course-image">
-                        <img src="${course.image}" alt="${course.title}">
-                    </div>
-                    <div class="course-info">
-                        <h3>${course.title}</h3>
-                        <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
-                            <span><i class="fas fa-user-graduate"></i> ${course.students}</span>
+            coursesGrid.innerHTML = '';
+    
+            courses.forEach(course => {
+                const courseHTML = `
+                    <article class="course-card">
+                        <div class="course-image">
+                            <img src="${course.image}" alt="${course.title}" loading="lazy">
                         </div>
-                        <p>${course.description}</p>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: ${course.progress}%;">
-                                ${course.progress}%
+                        <div class="course-info">
+                            <h3>${course.title}</h3>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                                <span><i class="fas fa-user-graduate"></i> ${course.students}</span>
                             </div>
+                            <p>${course.description}</p>
+                            <a href="#" class="view-details">Continue Learning</a>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                `;
+                coursesGrid.innerHTML += courseHTML;
+            });
+        } catch (error) {
+            console.error("Error loading courses:", error);
+            coursesGrid.innerHTML = `
+                <p class="error-message">Failed to load courses. Please try again later.</p>
             `;
-            coursesGrid.innerHTML += courseHTML;
-        });
+        }
+
+        injectStructuredData(mockData.courses);
+
+    }
+
+    function generateStructuredData(course) {
+        return {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": course.title,
+            "description": course.description,
+            "provider": {
+                "@type": "Organization",
+                "name": "EduMaster",
+                "url": "https://edumaster.com"
+            }
+        };
+    }
+    
+    function injectStructuredData(courses) {
+        const structuredDataScript = document.createElement('script');
+        structuredDataScript.type = 'application/ld+json';
+        structuredDataScript.textContent = JSON.stringify(courses.map(generateStructuredData), null, 2);
+        document.head.appendChild(structuredDataScript);
+    }
+    
+    
+
+
+    function showLoadingSpinner() {
+        document.getElementById('loading-spinner').classList.add('active');
+    }
+    
+    function hideLoadingSpinner() {
+        document.getElementById('loading-spinner').classList.remove('active');
     }
     
 
     // Initialize Dashboard
     function initDashboard() {
-        loadUserData();
-        loadCourses();
+        showLoadingSpinner();
+        setTimeout(() => {
+            loadUserData();
+            loadCourses();
+            hideLoadingSpinner();
+        }, 1000); // Simulate loading delay
     }
 
     // Load Dashboard on Page Load
@@ -131,4 +185,35 @@ const progressBarFill = document.querySelectorAll('.progress-bar-fill');
 progressBarFill.forEach(bar => {
     const progressValue = bar.style.width;
     bar.setAttribute('data-progress', progressValue);
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Load dark mode preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+
+        if (isDarkMode) {
+            localStorage.setItem('dark-mode', 'enabled');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            localStorage.setItem('dark-mode', 'disabled');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
+    // Force testimonial cards to update immediately
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach(card => {
+        card.classList.toggle('dark-mode', body.classList.contains('dark-mode'));
+    });
 });

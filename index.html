@@ -26,6 +26,10 @@
                 <a href="#" class="login-btn" onclick="openAuthModal('login')">Login</a>
                 <a href="#" class="signup-btn" onclick="openAuthModal('signup')">Signup</a>
             </nav>
+            <button id="dark-mode-toggle" class="cta-button dark-mode-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            
             <div class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </div>
@@ -76,31 +80,34 @@
         <div class="course-grid">
             <div class="course-card">
                 <div class="course-image">
-                    <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931" alt="Web Development">
+                    <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931" alt="Web Development" loading="lazy">
                 </div>
                 <div class="course-info">
                     <h3>Full Stack Web Development</h3>
                     <p>Master HTML, CSS, JavaScript and modern frameworks to build complete web applications.</p>
+                    <a href="#" class="cta-button">View Details</a>
                 </div>
             </div>
 
             <div class="course-card">
                 <div class="course-image">
-                    <img src="https://images.unsplash.com/photo-1618477388954-7852f32655ec" alt="Data Science">
+                    <img src="https://images.unsplash.com/photo-1618477388954-7852f32655ec" alt="Data Science" loading="lazy">
                 </div>
                 <div class="course-info">
                     <h3>Data Science & Analytics</h3>
                     <p>Learn Python, machine learning, and data visualization techniques for data analysis.</p>
+                    <a href="#" class="cta-button">View Details</a>
                 </div>
             </div>
 
             <div class="course-card">
                 <div class="course-image">
-                    <img src="https://images.unsplash.com/photo-1586717799252-bd134ad00e26" alt="Digital Marketing">
+                    <img src="https://images.unsplash.com/photo-1586717799252-bd134ad00e26" alt="Digital Marketing" loading="lazy">
                 </div>
                 <div class="course-info">
                     <h3>Digital Marketing Mastery</h3>
                     <p>Comprehensive guide to SEO, social media marketing, and online advertising strategies.</p>
+                    <a class="cta-button" href="#">View Details</a>
                 </div>
             </div>
         </div>
@@ -142,7 +149,7 @@
                 </p>
             </div>
             <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Online Learning" class="about-image">
+                alt="Online Learning" class="about-image" loading="lazy">
         </div>
     </section>
 
@@ -155,7 +162,7 @@
                     instructors are top-notch."</p>
                 <div class="testimonial-author">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
-                        class="author-image">
+                        class="author-image" loading="lazy">
                     <div>
                         <h4>Sarah Johnson</h4>
                         <p>Web Developer</p>
@@ -166,7 +173,7 @@
                 <p class="testimonial-quote">"The best investment I've made in my education. Flexible learning with
                     real-world projects."</p>
                 <div class="testimonial-author">
-                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mike Chen" class="author-image">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mike Chen" class="author-image" >
                     <div>
                         <h4>Mike Chen</h4>
                         <p>Data Scientist</p>
@@ -258,6 +265,11 @@
             </div>
         </div>
     </footer>
+
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
 
     <!-- JavaScript for mobile menu -->
     <script src="script.js"></script>

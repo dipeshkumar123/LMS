@@ -114,6 +114,35 @@ body {
     text-align: center;
 }
 
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav a i {
+    font-size: 1.5rem;  /* Increased icon size */
+    color: #ffffff;     /* Brighter icons for improved visibility */
+    transition: color 0.3s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.sidebar-nav a:hover i {
+    color: var(--accent-color); /* Icon color change on hover */
+}
+
+
 /* Main Content Wrapper */
 .content-wrapper {
     flex: 1;
@@ -172,6 +201,66 @@ body {
     color: var(--text-muted);
 }
 
+.navbar .menu-toggle i,
+.navbar .profile i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar .menu-toggle:hover i,
+.navbar .profile:hover i {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+
+.loading-spinner {
+    position: fixed; /* Ensure it overlays the entire page */
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100vh; 
+    background: rgba(255, 255, 255, 0.9); /* Light background for improved readability */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Higher than the navbar */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.loading-spinner.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.loading-spinner .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 /* Main Content */
 .main-content {
     padding: 2rem;
@@ -185,6 +274,12 @@ body {
     margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
+}
+
+.welcome-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: #ffffff; /* Improved text visibility */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .welcome-section::before {
@@ -257,6 +352,36 @@ body {
     transition: width 0.3s ease;
 }
 
+.course-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.course-info .view-details {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    transition: background 0.3s ease;
+}
+
+.course-info .view-details:hover {
+    background: var(--primary-dark);
+}
+
+
 /* Overlay */
 .sidebar-overlay {
     display: none;
@@ -304,6 +429,41 @@ body {
 .profile img:hover {
     transform: scale(1.1);
 }
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.profile-info::after {
+    content: "▼"; /* Arrow indicator */
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.profile-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.profile-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile:hover .profile-info::after {
+    transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+.profile-info .profile-name {
+    color: #ffffff; /* Enhanced profile name visibility */
+}
+
 
 /* Updated Logo Styles */
 .sidebar-header i {
@@ -525,4 +685,158 @@ body {
     text-align: center;
     color: #1e293b;
     /* Dark text for better visibility */
+}
+
+
+/* Error Message Styles */
+.error-message {
+    background-color: #fee2e2;
+    color: #ef4444;
+    padding: 1rem;
+    border: 2px solid #ef4444;
+    border-radius: var(--radius-md);
+    text-align: center;
+    margin: 2rem 0;
+}
+
+
+/* Global Dark Mode Enhancements */
+body.dark-mode {
+    background-color: #0f172a; /* Darker, consistent background */
+    color: #e5e7eb;
+}
+
+/* Unified Section Backgrounds */
+body.dark-mode .hero,
+body.dark-mode .courses,
+body.dark-mode .features,
+body.dark-mode .about,
+body.dark-mode .contact,
+body.dark-mode .pricing,
+body.dark-mode .testimonials {
+    background-color: #1e293b;  /* Consistent dark section background */
+}
+
+/* Testimonials Section */
+body.dark-mode .testimonial-card {
+    background-color: #243447;  /* Dark background for cards */
+    color: #e5e7eb;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .testimonial-quote {
+    color: #e5e7eb; /* Brighter quote text */
+}
+
+body.dark-mode .testimonial-author h4 {
+    color: #f8fafc; /* Brightened name text */
+}
+
+body.dark-mode .testimonial-author p {
+    color: #94a3b8; /* Muted role text */
+}
+
+body.dark-mode .author-image {
+    border: 2px solid #3b82f6; /* Add blue border for improved visibility */
+}
+
+/* Cards, Containers & Grids */
+body.dark-mode .card,
+body.dark-mode .course-card,
+body.dark-mode .feature-card,
+body.dark-mode .price-card,
+body.dark-mode .auth-modal-content {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Sidebar */
+body.dark-mode .sidebar {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode .sidebar-nav a {
+    color: #e5e7eb;
+}
+
+body.dark-mode .sidebar-nav a:hover,
+body.dark-mode .sidebar-nav a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+    background-color: #212121;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Search Bar */
+body.dark-mode .search-bar input {
+    background-color: #2a2a2a;
+    border: 1px solid #3d3d3d;
+    color: #e5e7eb;
+}
+
+/* Buttons & Links */
+body.dark-mode .cta-button,
+body.dark-mode .view-details {
+    background: #3b82f6;
+    color: #f8fafc;
+}
+
+body.dark-mode .cta-button:hover,
+body.dark-mode .view-details:hover {
+    background: #2563eb;
+}
+
+/* Footer */
+body.dark-mode footer {
+    background-color: #1a202c;
+    color: #e5e7eb;
+}
+
+body.dark-mode .footer-section a {
+    color: #e5e7eb;
+}
+
+body.dark-mode .footer-section a:hover {
+    color: var(--accent-color);
+}
+
+/* Progress Bar */
+body.dark-mode .progress-bar {
+    background: #334155;
+}
+
+body.dark-mode .progress-bar-fill {
+    background: #3b82f6;
+}
+
+/* Inputs & Forms */
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #2a2a2a;
+    border: 1px solid #3d3d3d;
+    color: #e5e7eb;
+}
+
+/* Error Messages */
+body.dark-mode .error-message {
+    background-color: #3b0217;
+    color: #ff7a7a;
+    border-color: #ff7a7a;
+}
+
+/* Modal Popups */
+body.dark-mode .auth-modal-content {
+    background-color: #1e293b;
+    border: 2px solid #3d3d3d;
+}
+
+/* Scroll to Top Button */
+body.dark-mode .scroll-to-top {
+    background-color: #3b82f6;
+    color: #e5e7eb;
 }
