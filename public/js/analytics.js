@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Fetch overview for each course
             const overviewPromises = courses.map(course =>
-                fetchAPI(`/api/analytics/course/${course.id}/overview`)
+                fetchAPI(`/api/analytics/course/${course._id}/overview`)
                     .catch(err => {
-                         console.error(`Failed to load overview for ${course.id}:`, err.message);
-                         return { courseId: course.id, courseTitle: course.title, error: true }; // Mark error
+                         console.error(`Failed to load overview for ${course._id}:`, err.message);
+                         return { courseId: course._id, courseTitle: course.title, error: true }; // Mark error
                     })
             );
             const overviews = await Promise.all(overviewPromises);
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (courses && courses.length > 0) {
                 courses.forEach(course => {
                     const option = document.createElement('option');
-                    option.value = course.id;
+                    option.value = course._id;
                     option.textContent = course.title;
                     courseSelect.appendChild(option);
                 });

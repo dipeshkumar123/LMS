@@ -1,17 +1,8 @@
 // server/services/gamificationService.js
 const progressRepo = require('../repositories/progressRepository');
 const forumRepo = require('../repositories/forumRepository');
-const { logger } = require('../utils/logger');
-
-const POINTS = { /* ... (copy from server.js) ... */
-    LESSON_COMPLETE: 10, QUIZ_PASS: 25, QUIZ_PERFECT: 50, ASSIGNMENT_SUBMIT: 30, FORUM_POST: 5, COURSE_CERTIFIED: 100
-};
-const BADGES = { /* ... (copy from server.js) ... */
-    COURSE_COMPLETE_CS101: { id: 'cert-cs101', name: 'CS101 Graduate', icon: '🎓' },
-    FIRST_QUIZ_PASSED: { id: 'quiz-pass-1', name: 'Quiz Master Initiate', icon: '✅' },
-    FIRST_FORUM_POST: { id: 'forum-post-1', name: 'Community Contributor', icon: '💬' },
-    PERFECT_SCORE: { id: 'quiz-perfect-1', name: 'Flawless Victory', icon: '🎯' }
-};
+const logger = require('../utils/logger');
+const { POINTS, BADGES } = require('../utils/gamificationHelpers');
 
 const awardPoints = async (userId, points, reason) => {
     await progressRepo.addPoints(userId, points);

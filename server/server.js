@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo'); // Store sessions in MongoDB
 const connectDB = require('./config/db'); // DB connection function
 const { ErrorResponse } = require('./utils/errorResponse'); // Custom error class
 const logger = require('./utils/logger'); // Simple logger (we'll create this)
+const mongoose = require('mongoose'); // Import mongoose for connection closing
 
 // Load env vars
 dotenv.config(); // Loads variables from .env file

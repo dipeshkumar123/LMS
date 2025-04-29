@@ -2,7 +2,7 @@
 const progressRepo = require('../repositories/progressRepository');
 const courseRepo = require('../repositories/courseRepository');
 const gamificationService = require('./gamificationService');
-const { logger } = require('../utils/logger');
+const logger = require('../utils/logger');
 
 const checkAndGrantCertification = async (userId, courseId) => {
     const course = await courseRepo.findCourseById(courseId);

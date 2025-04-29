@@ -41,6 +41,8 @@ const UserSchema = new mongoose.Schema({
         default: Date.now,
     },
     // Add any other fields like email, profile picture URL, etc. later
+    completedModules: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Module' }],
+    certifications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
 });
 
 // --- Password Hashing Middleware ---
