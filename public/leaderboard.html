@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - AI LMS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1>Leaderboard</h1>
+            <div class="user-info">
+                <span id="user-greeting">Welcome!</span>
+                 <!-- Phase 4: Gamification Display -->
+                 <div class="user-gamification-stats">
+                    <span id="user-points">Points: ...</span>
+                    <span id="user-badges-summary">Badges: ...</span>
+                </div>
+                <button id="logout-button" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+         <nav class="main-nav">
+            <div class="container">
+                 <ul>
+                    <li><a href="/index.html">Dashboard</a></li>
+                    <li><a href="/leaderboard.html">Leaderboard</a></li>
+                    <!-- Phase 5: Link to Profile Page -->
+                    <li><a href="/profile.html">My Profile</a></li>
+                 </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container leaderboard-container">
+        <h2>Top Learners (Global Points)</h2>
+        <div id="leaderboard-content">
+            <p>Loading leaderboard...</p>
+            <!-- Leaderboard table will be loaded here -->
+        </div>
+        <div id="leaderboard-error" class="error-message" style="display: none;"></div>
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2023 AI LMS Platform</p>
+    </footer>
+
+    <!-- Load shared auth logic first -->
+    <script src="/js/auth.js"></script>
+    <!-- Then load leaderboard specific logic -->
+    <script src="/js/leaderboard.js"></script> <!-- We will create this file next -->
+</body>
+</html>

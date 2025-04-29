@@ -1,0 +1,5 @@
+# .gitignore
+node_modules/
+.env
+*.log
+uploads/ # If you created this before and don't want to track submissions

@@ -1,0 +1,362 @@
+/* public/css/style.css */
+/* Phase 3 Updates: Added styles for AI sections and sidebar button */
+/* Phase 4 Updates: Styles for header gamification, leaderboard, responsive tweaks */
+/* Phase 5 Updates: Styles for risk display, profile page */
+
+/* --- Global Resets & Base Styles --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f4f7f6; display: flex; flex-direction: column; min-height: 100vh; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+a { color: #007bff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { margin-bottom: 0.8em; color: #2c3e50; }
+p { margin-bottom: 1em; }
+
+/* --- Utility Classes --- */
+.error-message { color: #dc3545; font-size: 0.9em; margin-top: 5px; }
+.success-message { color: #28a745; font-size: 0.9em; margin-top: 5px; }
+.feedback-message { padding: 15px; margin-top: 15px; border-radius: 5px; border: 1px solid transparent; display: none; } /* Ensure hidden by default */
+.feedback-message.success { background-color: #d4edda; border-color: #c3e6cb; color: #155724; }
+.feedback-message.error { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; }
+.feedback-message.info { background-color: #cce5ff; border-color: #b8daff; color: #004085; }
+.input-hint { font-size: 0.8em; color: #6c757d; margin-top: 2px; margin-bottom: 5px; }
+
+/* --- Header & Footer --- */
+.main-header { background-color: #343a40; color: #fff; padding: 1rem 0; margin-bottom: 20px; }
+.main-header .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; /* Allow wrapping on small screens */ }
+.main-header h1 { color: #fff; margin-bottom: 0; font-size: 1.8rem; }
+.main-header .user-info { display: flex; align-items: center; gap: 15px; /* Space between user items */ flex-wrap: wrap; }
+.main-header .user-info span#user-greeting { font-weight: 500; }
+
+/* Phase 4: Header Gamification Styles */
+.user-gamification-stats {
+    display: flex;
+    gap: 15px; /* Space between points and badges */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.user-gamification-stats span {
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 5px;
+    cursor: default; /* Indicate non-clickable stats */
+}
+/* Simple icons (could use FontAwesome or SVGs later) */
+#user-points::before { content: '⭐'; margin-right: 3px; }
+#user-badges-summary::before { content: '🏅'; margin-right: 3px; }
+/* End Header Gamification */
+
+.main-nav { background-color: #495057; padding: 0.5rem 0; }
+.main-nav ul { list-style: none; display: flex; gap: 20px; }
+.main-nav a { color: #f8f9fa; font-weight: 500; }
+.main-nav a:hover { color: #dee2e6; text-decoration: none; }
+.main-footer { background-color: #e9ecef; color: #6c757d; text-align: center; padding: 1rem 0; margin-top: auto; font-size: 0.9em; }
+
+/* --- Buttons --- */
+.btn { display: inline-block; padding: 10px 20px; font-size: 1rem; border-radius: 5px; cursor: pointer; text-align: center; border: none; transition: background-color 0.2s ease; background-color: #007bff; color: #fff; }
+.btn:hover { background-color: #0056b3; text-decoration: none; color: #fff; }
+.btn-secondary { background-color: #6c757d; }
+.btn-secondary:hover { background-color: #5a6268; }
+/* ... other btn variants ... */
+.btn-small { padding: 6px 12px; font-size: 0.9rem; }
+
+
+/* --- Forms --- */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-size: 1rem; }
+.form-group textarea { min-height: 100px; resize: vertical; }
+
+/* --- Login Page --- */
+.login-container { max-width: 400px; margin: 40px auto; padding: 30px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.login-container h1 { text-align: center; margin-bottom: 25px; }
+
+/* --- Dashboard --- */
+.dashboard-container { padding-top: 20px; }
+/* Analytics Section Styles (Unchanged from P2) */
+.analytics-section { background-color: #fff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); }
+.analytics-section h2 { margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+
+/* Phase 5: Risk Level Display */
+.risk-level-display {
+    padding: 10px 15px;
+    margin-bottom: 20px; /* Space below risk display */
+    border-radius: 5px;
+    font-weight: 500;
+    border: 1px solid;
+    border-left-width: 5px;
+    font-size: 0.95rem;
+}
+.risk-level-display.low { background-color: #d4edda; border-color: #c3e6cb; border-left-color: #28a745; color: #155724; }
+.risk-level-display.medium { background-color: #fff3cd; border-color: #ffeeba; border-left-color: #ffc107; color: #856404; }
+.risk-level-display.high { background-color: #f8d7da; border-color: #f5c6cb; border-left-color: #dc3545; color: #721c24; }
+.risk-level-display strong { margin-right: 5px; }
+.risk-level-display ul { /* For displaying factors */
+    list-style: disc;
+    padding-left: 25px;
+    margin-top: 8px;
+    font-size: 0.9em;
+    font-weight: normal;
+    color: inherit; /* Inherit color from parent */
+}
+
+#analytics-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.analytics-card { background-color: #f8f9fa; padding: 15px; border-radius: 5px; border: 1px solid #e9ecef; }
+.analytics-card h4 { margin-top: 0; margin-bottom: 10px; font-size: 1.1rem; color: #495057; }
+.analytics-card p { font-size: 1rem; margin-bottom: 5px; }
+.analytics-card strong { color: #0056b3; }
+.certificate-status { font-weight: bold; padding: 8px; border-radius: 4px; display: inline-block; margin-top: 5px; }
+.certificate-status.certified { background-color: #d4edda; color: #155724; }
+.certificate-status.not-certified { background-color: #f8d7da; color: #721c24; }
+hr.section-divider { border: none; height: 1px; background-color: #dee2e6; margin: 30px 0; }
+/* Course Grid */
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+.course-card { background-color: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; }
+.course-card:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); }
+.course-card h3 { margin-top: 0; color: #0056b3; }
+.course-card p { flex-grow: 1; margin-bottom: 15px; color: #495057; }
+.course-card .btn { margin-top: auto; width: 100%; }
+
+/* --- Course View Page --- */
+.course-view-container { display: flex; gap: 30px; padding-top: 20px; flex-grow: 1; }
+/* Sidebar */
+.course-sidebar { flex: 0 0 300px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); height: fit-content; max-height: 80vh; overflow-y: auto; }
+.course-sidebar h2 { font-size: 1.4rem; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
+.course-sidebar .module { margin-bottom: 15px; }
+.course-sidebar .module h3 { font-size: 1.1rem; margin-bottom: 8px; color: #343a40; }
+.course-sidebar ul { list-style: none; padding-left: 15px; }
+.course-sidebar li a { display: block; padding: 8px 10px; border-radius: 4px; margin-bottom: 4px; color: #495057; transition: background-color 0.2s ease, color 0.2s ease; position: relative; }
+.course-sidebar li a:hover, .course-sidebar li a.active { background-color: #e9ecef; color: #0056b3; text-decoration: none; }
+.course-sidebar li a.completed { color: #155724; font-style: italic; padding-left: 25px; }
+.course-sidebar li a.completed::before { content: '✓'; position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-weight: bold; font-style: normal; }
+/* Phase 3: Sidebar Action Button */
+.sidebar-action {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+.sidebar-action .btn {
+    width: 90%; /* Make button slightly less than full width */
+}
+
+/* Content Area */
+.course-content { flex-grow: 1; background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+#content-title { font-size: 1.6rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+#content-area video { max-width: 100%; height: auto; border-radius: 5px; background-color: #000; }
+/* Adaptive Suggestion Box */
+.adaptive-suggestion-box { background-color: #e7f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; padding: 15px 20px; margin-bottom: 20px; border-radius: 5px; }
+.adaptive-suggestion-box p { margin-bottom: 10px; color: #004085; font-size: 1rem; }
+.adaptive-suggestion-box p:last-child { margin-bottom: 0; }
+.adaptive-suggestion-box strong { font-weight: 600; margin-right: 5px; }
+.adaptive-suggestion-box a { color: #0056b3; font-weight: 600; }
+.adaptive-suggestion-box a:hover { text-decoration: underline; }
+.adaptive-suggestion-box .suggestion-icon { font-size: 1.2em; margin-right: 8px; }
+
+/* --- Quiz Specific Styles --- */
+.quiz-form .question-block, .practice-quiz-form .question-block { /* Apply to practice too */
+    margin-bottom: 25px; padding: 15px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;
+}
+.quiz-form .question-text, .practice-quiz-form .question-text { font-weight: bold; margin-bottom: 10px; }
+.quiz-form .options label, .practice-quiz-form .options label { display: block; margin-bottom: 8px; cursor: pointer; padding: 5px; border-radius: 3px; }
+.quiz-form .options label:hover, .practice-quiz-form .options label:hover { background-color: #e9ecef; }
+.quiz-form .options input[type="radio"], .practice-quiz-form .options input[type="radio"] { margin-right: 10px; }
+/* Quiz Results (Unchanged) */
+.quiz-results-summary { font-size: 1.2em; font-weight: bold; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+.quiz-results-summary.passed { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+.quiz-results-summary.failed { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+.quiz-result-item { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+.quiz-result-item.correct { border-left: 5px solid #28a745; background-color: #f8f9fa; }
+.quiz-result-item.incorrect { border-left: 5px solid #dc3545; background-color: #f8f9fa;}
+.quiz-result-item p { margin-bottom: 5px; }
+.quiz-result-item strong { display: inline-block; min-width: 120px; }
+
+/* --- Assignment Styles --- */
+.assignment-section { padding: 20px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; margin-top: 20px; }
+.assignment-section h4 { margin-top: 0; margin-bottom: 10px; color: #495057; }
+.assignment-description { margin-bottom: 15px; font-style: italic; }
+
+/* --- Forum Styles --- */
+.forum-section { margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ccc; }
+.forum-section h4 { margin-bottom: 15px; color: #495057; }
+.forum-post { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+.forum-post-meta { font-size: 0.9em; color: #6c757d; margin-bottom: 8px; }
+.forum-post-meta strong { color: #343a40; }
+.forum-post-text { white-space: pre-wrap; }
+#new-post-form { margin-top: 20px; }
+
+/* --- Phase 3: AI Section Styles --- */
+.ai-section {
+    margin-top: 30px;
+    padding: 20px 25px;
+    border-radius: 8px;
+    border: 1px solid #d6dadf; /* Slightly darker border */
+    background-color: #f8f9fa; /* Light background */
+}
+.ai-section-title {
+    font-size: 1.4rem;
+    color: #495057; /* Muted title color */
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 20px;
+}
+/* Specific AI section styling */
+.personalized-practice {
+     border-left: 5px solid #6f42c1; /* Purple border */
+}
+.ai-activity-suggestion {
+     border-left: 5px solid #fd7e14; /* Orange border */
+}
+.ai-activity-suggestion p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+.ai-activity-suggestion strong { /* Highlight activity title */
+     font-weight: bold;
+     display: block; /* Make title stand on its own line */
+     margin-bottom: 5px;
+     font-size: 1.1rem;
+}
+
+
+/* --- Analytics Page Styles (If using analytics.html) --- */
+.analytics-container { padding-top: 20px; }
+.analytics-table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.analytics-table th, .analytics-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #dee2e6; }
+.analytics-table thead th { background-color: #e9ecef; font-weight: 600; color: #495057; }
+.analytics-table tbody tr:hover { background-color: #f8f9fa; }
+.analytics-table td.status-certified { color: #155724; font-weight: bold; }
+.analytics-table td.status-in-progress { color: #004085; }
+.analytics-table td .score.low { color: #dc3545; }
+.analytics-table td .score.medium { color: #ffc107; }
+.analytics-table td .score.high { color: #28a745; font-weight: bold; }
+.analytics-table td .date-time { font-size: 0.9em; color: #6c757d; }
+/* Progress Bar Styles (for potential use in analytics.js) */
+.progress-bar-container { width: 100%; background-color: #e9ecef; border-radius: 4px; overflow: hidden; height: 20px; }
+.progress-bar { height: 100%; color: #fff; text-align: center; line-height: 20px; font-size: 0.8rem; transition: width 0.4s ease; white-space: nowrap; padding: 0 5px; }
+.progress-bar.low { background-color: #dc3545; }
+.progress-bar.medium { background-color: #ffc107; color: #333; }
+.progress-bar.high { background-color: #28a745; }
+
+
+/* --- Phase 4: Leaderboard Page Styles --- */
+.leaderboard-container {
+    padding: 20px 0;
+}
+#leaderboard-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures border radius clips content */
+}
+#leaderboard-content th,
+#leaderboard-content td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+#leaderboard-content th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+#leaderboard-content tbody tr:nth-child(even) {
+    background-color: #fcfcfc; /* Very subtle striping */
+}
+#leaderboard-content tbody tr:hover {
+    background-color: #f1f1f1;
+}
+#leaderboard-content td:first-child { /* Rank */
+    font-weight: bold;
+    width: 50px; /* Fixed width for rank */
+    text-align: center;
+    color: #6c757d;
+}
+#leaderboard-content td:last-child { /* Points */
+    font-weight: bold;
+    color: #0056b3;
+    text-align: right;
+    width: 100px;
+}
+/* Highlight top 3 */
+#leaderboard-content tbody tr:nth-child(1) td:first-child { color: #ffd700; /* Gold */ }
+#leaderboard-content tbody tr:nth-child(2) td:first-child { color: #c0c0c0; /* Silver */ }
+#leaderboard-content tbody tr:nth-child(3) td:first-child { color: #cd7f32; /* Bronze */ }
+
+/* --- Phase 5: Profile Page Styles --- */
+.profile-container {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+.profile-details, .account-actions {
+    background-color: #fff;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+.profile-details p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+.profile-details p:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.profile-details strong {
+    display: inline-block;
+    width: 120px; /* Align labels */
+    color: #495057;
+}
+.profile-details span { /* Values */
+    color: #333;
+}
+
+.account-actions h2 {
+    margin-top: 0;
+}
+.account-actions p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+.account-actions .btn-danger {
+    margin-right: 10px; /* Space if adding other buttons later */
+}
+
+
+/* --- Phase 4: Improved Responsive Design --- */
+@media (max-width: 992px) {
+     .main-header .header-content { gap: 10px; } /* Reduce gap slightly */
+     .main-header .user-info { gap: 10px; }
+     .user-gamification-stats { font-size: 0.85em; padding: 4px 8px; }
+}
+
+@media (max-width: 768px) {
+    .course-view-container { flex-direction: column; }
+    .course-sidebar { flex: 1 1 auto; max-height: 350px; /* Slightly more height allowed */ margin-bottom: 20px; }
+    .main-header .header-content { flex-direction: column; align-items: flex-start; }
+    .main-header .user-info { margin-top: 10px; width: 100%; /* Make user info take full width */ justify-content: space-between; } /* Space out elements */
+     #analytics-content { grid-template-columns: 1fr; }
+     /* Ensure leaderboard table scrolls horizontally if needed */
+     #leaderboard-content { overflow-x: auto; }
+}
+@media (max-width: 576px) {
+     .main-header h1 { font-size: 1.5rem; }
+     .user-gamification-stats { flex-direction: column; align-items: flex-start; gap: 5px; background: none; padding: 0; } /* Stack points/badges */
+    #leaderboard-content th, #leaderboard-content td { padding: 8px 10px; font-size: 0.9rem;} /* Smaller padding/font on small screens */
+    .profile-details p { font-size: 1rem; }
+    .profile-details strong { width: 100px; } /* Adjust label width */
+}

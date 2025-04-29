@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - AI LMS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Add CSS for potential charts later -->
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1>Analytics Dashboard</h1>
+            <div class="user-info">
+                <span id="user-greeting">Welcome!</span>
+                <button id="logout-button" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+         <nav class="main-nav">
+            <div class="container">
+                <ul id="nav-links">
+                    <li><a href="/index.html">My Courses</a></li>
+                    <li><a href="/analytics.html">Analytics</a></li>
+                    <!-- Add other relevant links -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container analytics-container">
+        <h2>Course Analytics Overview</h2>
+        <div id="course-overview-section">
+            <p>Loading course overview data...</p>
+            <!-- Course overview data will be loaded here (e.g., in a table) -->
+        </div>
+
+        <hr style="margin: 30px 0;">
+
+        <h2>User Progress Details</h2>
+        <div id="user-progress-section">
+            <form id="user-lookup-form">
+                <div class="form-group">
+                    <label for="course-select">Select Course:</label>
+                    <select id="course-select" name="courseId" required>
+                        <option value="">Loading Courses...</option>
+                    </select>
+                </div>
+                 <div class="form-group">
+                    <label for="user-select">Select User:</label>
+                    <select id="user-select" name="userId" required>
+                        <option value="">Select a Course First...</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">View User Progress</button>
+            </form>
+            <div id="user-progress-details" style="margin-top: 20px;">
+                <p>Select a course and user to view detailed progress.</p>
+                <!-- Detailed progress report will be loaded here -->
+            </div>
+        </div>
+         <div id="analytics-error" class="error-message" style="display: none;"></div>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2023 AI LMS Platform</p>
+    </footer>
+
+    <!-- Load shared auth logic first -->
+    <script src="/js/auth.js"></script>
+    <!-- Then load analytics specific logic -->
+    <script src="/js/analytics.js"></script>
+</body>
+</html>

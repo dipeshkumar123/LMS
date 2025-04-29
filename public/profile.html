@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - AI LMS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1>My Profile</h1>
+            <div class="user-info">
+                <span id="user-greeting">Welcome!</span>
+                 <div class="user-gamification-stats">
+                    <span id="user-points">Points: ...</span>
+                    <span id="user-badges-summary">Badges: ...</span>
+                </div>
+                <button id="logout-button" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+         <nav class="main-nav">
+            <div class="container">
+                 <ul>
+                    <li><a href="/index.html">Dashboard</a></li>
+                    <li><a href="/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="/profile.html">My Profile</a></li>
+                 </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container profile-container">
+        <h2>Account Information</h2>
+        <div id="profile-info" class="profile-details">
+            <p><strong>Name:</strong> <span id="profile-name">Loading...</span></p>
+            <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
+            <p><strong>Role:</strong> <span id="profile-role">Loading...</span></p>
+            <p><strong>User ID:</strong> <span id="profile-id">Loading...</span></p>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Account Management</h2>
+        <div class="account-actions">
+            <p><strong>Data Deletion:</strong> Requesting data deletion is permanent and cannot be undone. Your account and all associated progress, submissions, and posts will be removed according to our data policy.</p>
+            <button id="delete-account-btn" class="btn btn-danger">Delete My Account and Data</button>
+            <p id="delete-feedback" class="feedback-message" style="display: none;"></p>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2023 AI LMS Platform</p>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+    <!-- We will create profile.js next -->
+    <script src="/js/profile.js"></script>
+</body>
+</html>

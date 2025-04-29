@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI LMS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1>Dashboard - AI LMS</h1>
+            <div class="user-info">
+                <!-- User Greeting -->
+                <span id="user-greeting">Welcome!</span>
+                <!-- Phase 4: Gamification Display -->
+                <div class="user-gamification-stats">
+                    <span id="user-points" title="Total Points">Points: Loading...</span>
+                    <span id="user-badges-summary" title="Earned Badges">Badges: Loading...</span>
+                </div>
+                <button id="logout-button" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul id="nav-links">
+                    <li><a href="/index.html">My Courses & Progress</a></li>
+                    <!-- Phase 4: Leaderboard Link -->
+                    <li><a href="/leaderboard.html">Leaderboard</a></li>
+                    <!-- Admin/Instructor links will be added dynamically if needed -->
+                     <!-- Phase 5: Link to Profile Page -->
+                    <li><a href="/profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container dashboard-container">
+
+        <!-- Phase 2: Analytics Section -->
+        <section id="dashboard-analytics" class="analytics-section">
+            <h2>My Progress Overview</h2>
+            <!-- Phase 5: Add Risk Level Display -->
+            <div id="user-risk-level" class="risk-level-display" style="display: none;">
+                 <!-- Content loaded by JS -->
+            </div>
+            <div id="analytics-content">
+                <p>Loading analytics data...</p>
+                <!-- Analytics summaries loaded here -->
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <h2>My Courses</h2>
+        <div id="course-list" class="course-grid">
+            <!-- Course cards loaded here -->
+            <p>Loading courses...</p>
+        </div>
+
+        <!-- Placeholder for Admin/Instructor Panel Links -->
+        <div id="role-specific-links" style="margin-top: 20px;"></div>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2023 AI LMS Platform</p>
+    </footer>
+
+    <!-- Load shared auth logic first -->
+    <script src="/js/auth.js"></script>
+    <!-- Then load dashboard specific logic -->
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

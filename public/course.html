@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course View - AI LMS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+             <h1 id="course-page-title">Course View</h1> <!-- Title will be updated -->
+            <div class="user-info">
+                <span id="user-greeting">Welcome!</span>
+                <!-- Phase 4: Gamification Display (could optionally show here too) -->
+                <div class="user-gamification-stats">
+                    <span id="user-points">Points: ...</span>
+                    <span id="user-badges-summary">Badges: ...</span>
+                </div>
+                <button id="logout-button" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+         <nav class="main-nav">
+            <div class="container">
+                 <ul>
+                    <li><a href="/index.html"> ← Back to Dashboard</a></li>
+                    <!-- Phase 4: Leaderboard Link -->
+                    <li><a href="/leaderboard.html">Leaderboard</a></li>
+                    <!-- Phase 5: Link to Profile Page -->
+                    <li><a href="/profile.html">My Profile</a></li>
+                 </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container course-view-container">
+        <aside class="course-sidebar">
+            <h2 id="course-sidebar-title">Course Content</h2>
+            <div id="module-list">
+                <!-- Modules and Lessons will be loaded here -->
+                <p>Loading course structure...</p>
+            </div>
+             <!-- Phase 3: Add button to trigger AI activity suggestion -->
+             <div class="sidebar-action">
+                 <button id="suggest-activity-btn" class="btn btn-secondary btn-small">Suggest an Activity</button>
+             </div>
+        </aside>
+
+        <section class="course-content">
+            <h2 id="content-title">Select a Lesson</h2>
+
+            <!-- Phase 2: Adaptive Suggestion Area -->
+            <div id="adaptive-suggestion" class="adaptive-suggestion-box" style="display: none;">
+                 <!-- Content loaded by JS -->
+            </div>
+
+            <div id="content-area">
+                <!-- Lesson content (text, video, quiz, assignment, forum) will be loaded here -->
+                <p>Please choose a lesson from the sidebar to begin.</p>
+            </div>
+            <div id="lesson-actions" style="margin-top: 20px;">
+                 <!-- Mark Complete button, Get Practice button etc. -->
+            </div>
+             <div id="content-feedback" class="feedback-message" style="display: none;"></div>
+
+            <!-- Phase 3: Personalized Practice Area -->
+            <section id="personalized-practice-area" class="ai-section personalized-practice" style="display: none;">
+                 <h3 class="ai-section-title">Personalized Practice</h3>
+                 <div id="practice-content">
+                     <!-- AI Practice questions/content loaded here -->
+                 </div>
+                 <div id="practice-feedback" class="feedback-message" style="display: none;"></div>
+            </section>
+
+             <!-- Phase 3: AI Activity Suggestion Area -->
+             <section id="ai-activity-suggestion-area" class="ai-section ai-activity-suggestion" style="display: none;">
+                  <h3 class="ai-section-title">AI Activity Suggestion</h3>
+                  <div id="activity-content">
+                       <!-- AI Activity suggestion loaded here -->
+                  </div>
+             </section>
+
+             <!-- Forum section will be appended here by JS if applicable -->
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2023 AI LMS Platform</p>
+    </footer>
+
+    <!-- Load shared auth logic first -->
+    <script src="/js/auth.js"></script>
+    <!-- Then load course specific logic -->
+    <script src="/js/course.js"></script>
+</body>
+</html>
