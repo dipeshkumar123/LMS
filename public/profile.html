@@ -1,61 +1,86 @@
+<!-- public/profile.html (Restyled) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - AI LMS</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>My Profile - EduMaster LMS</title> 
+    <!-- {/* Updated Title */} -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/landing-style.css"> 
+    <!-- {/* Main Styles */} -->
+    <!-- {/* <link rel="stylesheet" href="/css/app-style.css"> */} {/* App Overrides */} -->
 </head>
-<body>
-    <header class="main-header">
-        <div class="container header-content">
-            <h1>My Profile</h1>
-            <div class="user-info">
-                <span id="user-greeting">Welcome!</span>
-                 <div class="user-gamification-stats">
-                    <span id="user-points">Points: ...</span>
-                    <span id="user-badges-summary">Badges: ...</span>
-                </div>
-                <button id="logout-button" class="btn btn-secondary">Logout</button>
+<body class="app-page"> 
+    <!-- {/* App page class */} -->
+
+    <!-- App Header (Consistent) -->
+     <header class="app-header">
+         <div class="nav-container">
+             <div class="logo"><i class="fas fa-graduation-cap"></i> EduMaster</div>
+             <div class="user-info-controls">
+                 <span id="user-greeting" class="greeting">Welcome!</span>
+                 <div class="user-gamification-stats header-stats">
+                     <span id="user-points" title="Total Points">...</span>
+                     <span id="user-badges-summary" title="Earned Badges">...</span>
+                 </div>
+                 <a href="/profile.html" class="profile-link" title="My Profile"><i class="fas fa-user-circle"></i></a>
+                 <button id="logout-button" class="cta-button secondary btn-small logout-btn">Logout</button>
+                  <button id="dark-mode-toggle" class="cta-button dark-mode-toggle"><i class="fas fa-moon"></i></button>
+             </div>
+         </div>
+     </header>
+
+
+    <!-- Main App Content Area -->
+    <main class="app-main-content container"> 
+        <!-- {/* Use container */} -->
+
+        <h1 class="page-title">My Profile</h1>
+
+        <!-- {/* Profile Info Section */} -->
+        <section class="content-section profile-section-app"> 
+            <!-- {/* Use content-section style */} -->
+            <h2 class="section-title-app">Account Information</h2>
+            <div id="profile-info" class="profile-details-app"> 
+                <!-- {/* Updated class */} -->
+                <p><strong>Name:</strong> <span id="profile-name">Loading...</span></p>
+                <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
+                <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
+                 <!-- {/* Assuming we add email display */} -->
+                <p><strong>Role:</strong> <span id="profile-role">Loading...</span></p>
+                <p><strong>User ID:</strong> <span id="profile-id">Loading...</span></p>
             </div>
-        </div>
-         <nav class="main-nav">
-            <div class="container">
-                 <ul>
-                    <li><a href="/index.html">Dashboard</a></li>
-                    <li><a href="/leaderboard.html">Leaderboard</a></li>
-                    <li><a href="/profile.html">My Profile</a></li>
-                 </ul>
+        </section>
+
+        <!-- {/* Account Management Section */} -->
+         <section class="content-section account-mgmt-section-app"> 
+            <!-- {/* Use content-section style */} -->
+             <h2 class="section-title-app">Account Management</h2>
+             <div class="account-actions-app"> 
+                <!-- {/* Updated class */} -->
+                <p><strong>Data Deletion:</strong> Requesting data deletion is permanent...</p>
+                <button id="delete-account-btn" class="btn btn-danger">Delete My Account and Data</button>
+                <p id="delete-feedback" class="feedback-message" style="display: none;"></p>
             </div>
-        </nav>
-    </header>
-
-    <main class="container profile-container">
-        <h2>Account Information</h2>
-        <div id="profile-info" class="profile-details">
-            <p><strong>Name:</strong> <span id="profile-name">Loading...</span></p>
-            <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
-            <p><strong>Role:</strong> <span id="profile-role">Loading...</span></p>
-            <p><strong>User ID:</strong> <span id="profile-id">Loading...</span></p>
-        </div>
-
-        <hr class="section-divider">
-
-        <h2>Account Management</h2>
-        <div class="account-actions">
-            <p><strong>Data Deletion:</strong> Requesting data deletion is permanent and cannot be undone. Your account and all associated progress, submissions, and posts will be removed according to our data policy.</p>
-            <button id="delete-account-btn" class="btn btn-danger">Delete My Account and Data</button>
-            <p id="delete-feedback" class="feedback-message" style="display: none;"></p>
-        </div>
+         </section>
 
     </main>
 
-    <footer class="main-footer">
-        <p>© 2023 AI LMS Platform</p>
+    <!-- App Footer (Consistent) -->
+    <footer class="app-footer">
+        <p>© 2024 EduMaster LMS. All rights reserved.</p>
     </footer>
 
+     <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Load JS -->
     <script src="/js/auth.js"></script>
-    <!-- We will create profile.js next -->
     <script src="/js/profile.js"></script>
+    <script src="/js/app-common.js"></script> 
+    <!-- {/* Load common UI logic */} -->
+
 </body>
 </html>

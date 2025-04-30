@@ -80,10 +80,22 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 // Handle SPA routing or direct file access (if not an API call)
 // This should come after API routes and static files
 app.get('*', (req, res, next) => {
+    // List of known frontend app routes that require login
+    const appRoutes = ['/app.html', '/course.html', '/leaderboard.html', '/profile.html'];
+    
      // Ignore API routes or specific file types if needed
     if (req.originalUrl.startsWith('/api')) {
        return next(); // Skip if it's an API call already handled (or 404'd)
     }
+    
+    // Check if user is trying to access a protected app route AND is not logged in
+    // Note: This is basic protection; using 'protect' middleware on specific backend routes
+    // for fetching app data is more robust.
+    if (appRoutes.some(route => req.originalUrl.startsWith(route)) && (!req.session || !req.session.user)) {
+        // Redirect to login or landing page if trying to access app while logged out
+        return res.redirect('/#login'); // Redirect to landing page, hash triggers modal potentially
+   }
+   
     // Otherwise, serve the main index.html for client-side routing
      // Adjust path if your index.html is elsewhere
      res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));

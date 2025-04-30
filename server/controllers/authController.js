@@ -2,10 +2,8 @@
 const User = require('../models/User'); // Import the User model
 const asyncHandler = require('../middleware/asyncHandler'); // We'll create this helper next
 const { ErrorResponse } = require('../utils/errorResponse'); // We'll create this helper later
+const logger = require('../utils/logger'); // Assuming logger exists
 
-// @desc    Login user
-// @route   POST /api/login
-// @access  Public
 exports.login = asyncHandler(async (req, res, next) => {
     console.log('[DEBUG] Login attempt - Request body:', { 
         username: req.body.username,
@@ -77,6 +75,44 @@ exports.getCurrentUser = asyncHandler(async (req, res, next) => {
     } else {
          // This case should technically be caught by auth middleware, but good defense
          return next(new ErrorResponse('Not authorized', 401));
+    }
+});
+
+// --- NEW: Register User ---
+// @desc    Register a new user
+// @route   POST /api/register
+// @access  Public
+exports.register = asyncHandler(async (req, res, next) => {
+    const { name, username, email, password, role } = req.body; // Added email, assuming it's needed
+
+    // Basic Validation (Add more robust validation as needed)
+    if (!name || !username || !email || !password) {
+        return next(new ErrorResponse('Please provide name, username, email, and password', 400));
+    }
+    // Add email format validation, password strength check etc.
+
+    // Check if user already exists (by username or email)
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+    if (existingUser) {
+        return next(new ErrorResponse('Username or email already exists', 400));
+    }
+
+    // Create user (password hashing is handled by pre-save hook in User model)
+    try {
+        const user = await User.create({
+            name,
+            username,
+            email, // Assuming you add email to User schema
+            password,
+            role: role || 'Learner' // Default to Learner if not provided
+        });
+
+        // User created successfully, log them in directly
+        sendTokenResponse(user, 201, req, res); // 201 Created status
+
+    } catch (error) {
+        // Handle potential validation errors from Mongoose
+        next(error); // Pass to global error handler
     }
 });
 

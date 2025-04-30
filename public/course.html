@@ -1,97 +1,116 @@
+<!-- public/course.html (Restyled) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course View - AI LMS</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Course View - EduMaster LMS</title> 
+    <!-- {/* Updated Title */} -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/landing-style.css"> 
+    <!-- {/* Main Styles */} -->
+    <!-- {/* <link rel="stylesheet" href="/css/app-style.css"> */} {/* App Overrides */} -->
 </head>
-<body>
-    <header class="main-header">
-        <div class="container header-content">
-             <h1 id="course-page-title">Course View</h1> <!-- Title will be updated -->
-            <div class="user-info">
-                <span id="user-greeting">Welcome!</span>
-                <!-- Phase 4: Gamification Display (could optionally show here too) -->
-                <div class="user-gamification-stats">
-                    <span id="user-points">Points: ...</span>
-                    <span id="user-badges-summary">Badges: ...</span>
+<body class="app-page course-page">
+     <!-- {/* Added course-page class */} -->
+
+    <!-- App Header (Consistent) -->
+    <header class="app-header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                EduMaster
+            </div>
+            <div class="user-info-controls">
+                <span id="user-greeting" class="greeting">Welcome!</span>
+                <div class="user-gamification-stats header-stats">
+                    <span id="user-points" title="Total Points">...</span>
+                    <span id="user-badges-summary" title="Earned Badges">...</span>
                 </div>
-                <button id="logout-button" class="btn btn-secondary">Logout</button>
+                <a href="/profile.html" class="profile-link" title="My Profile"><i class="fas fa-user-circle"></i></a>
+                <button id="logout-button" class="cta-button secondary btn-small logout-btn">Logout</button>
+                 <button id="dark-mode-toggle" class="cta-button dark-mode-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                 </button>
             </div>
         </div>
-         <nav class="main-nav">
-            <div class="container">
-                 <ul>
-                    <li><a href="/index.html"> ← Back to Dashboard</a></li>
-                    <!-- Phase 4: Leaderboard Link -->
-                    <li><a href="/leaderboard.html">Leaderboard</a></li>
-                    <!-- Phase 5: Link to Profile Page -->
-                    <li><a href="/profile.html">My Profile</a></li>
-                 </ul>
-            </div>
-        </nav>
     </header>
 
-    <main class="container course-view-container">
-        <aside class="course-sidebar">
-            <h2 id="course-sidebar-title">Course Content</h2>
-            <div id="module-list">
-                <!-- Modules and Lessons will be loaded here -->
-                <p>Loading course structure...</p>
-            </div>
-             <!-- Phase 3: Add button to trigger AI activity suggestion -->
-             <div class="sidebar-action">
-                 <button id="suggest-activity-btn" class="btn btn-secondary btn-small">Suggest an Activity</button>
-             </div>
-        </aside>
+    <!-- Main App Content Area -->
+    <main class="app-main-content container course-view-container-app"> 
+        <!-- {/* Use container, add specific class */} -->
 
-        <section class="course-content">
-            <h2 id="content-title">Select a Lesson</h2>
+        <!-- {/* Course Title Area */} -->
+        <div class="course-title-area">
+             <a href="/dashboard.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+             <h1 id="course-page-title" class="page-title">Course View</h1>
+              <!-- {/* Use page-title style */} -->
+        </div>
 
-            <!-- Phase 2: Adaptive Suggestion Area -->
-            <div id="adaptive-suggestion" class="adaptive-suggestion-box" style="display: none;">
-                 <!-- Content loaded by JS -->
-            </div>
 
-            <div id="content-area">
-                <!-- Lesson content (text, video, quiz, assignment, forum) will be loaded here -->
-                <p>Please choose a lesson from the sidebar to begin.</p>
-            </div>
-            <div id="lesson-actions" style="margin-top: 20px;">
-                 <!-- Mark Complete button, Get Practice button etc. -->
-            </div>
-             <div id="content-feedback" class="feedback-message" style="display: none;"></div>
+        <!-- {/* Course Content Grid (Sidebar + Main) */} -->
+        <div class="course-layout-grid">
 
-            <!-- Phase 3: Personalized Practice Area -->
-            <section id="personalized-practice-area" class="ai-section personalized-practice" style="display: none;">
-                 <h3 class="ai-section-title">Personalized Practice</h3>
-                 <div id="practice-content">
-                     <!-- AI Practice questions/content loaded here -->
+             <!-- {/* Sidebar */} -->
+            <aside class="course-sidebar-app"> 
+                <!-- {/* New class for app sidebar */} -->
+                <h2 id="course-sidebar-title">Course Content</h2>
+                <div id="module-list">
+                    <p>Loading structure...</p>
+                </div>
+                 <div class="sidebar-action">
+                     <button id="suggest-activity-btn" class="btn btn-secondary btn-small">Suggest Activity</button>
                  </div>
-                 <div id="practice-feedback" class="feedback-message" style="display: none;"></div>
+            </aside>
+
+            <!-- {/* Main Content Section */} -->
+            <section class="course-content-main">
+                 <!-- {/* New class */} -->
+                <h2 id="content-title">Select a Lesson</h2>
+
+                <!-- {/* Suggestions / Feedback */} -->
+                <div id="adaptive-suggestion" class="adaptive-suggestion-box" style="display: none;"></div>
+                <div id="content-feedback" class="feedback-message" style="display: none;"></div>
+
+                <!-- {/* Lesson Content Area */} -->
+                <div id="content-area" class="lesson-content-area">
+                    <p>Please choose a lesson from the sidebar.</p>
+                </div>
+                <div id="lesson-actions" class="lesson-actions-area"></div>
+
+                <!-- {/* AI Sections */} -->
+                <section id="personalized-practice-area" class="ai-section personalized-practice" style="display: none;">
+                     <h3 class="ai-section-title">Personalized Practice</h3>
+                     <div id="practice-content"></div>
+                     <div id="practice-feedback" class="feedback-message" style="display: none;"></div>
+                </section>
+                 <section id="ai-activity-suggestion-area" class="ai-section ai-activity-suggestion" style="display: none;">
+                      <h3 class="ai-section-title">AI Activity Suggestion</h3>
+                      <div id="activity-content"></div>
+                 </section>
+
+                 <!-- {/* Forum/Assignment sections will be appended dynamically inside course-content-main */} -->
+
             </section>
+        </div> 
+        <!-- {/* End course-layout-grid */} -->
 
-             <!-- Phase 3: AI Activity Suggestion Area -->
-             <section id="ai-activity-suggestion-area" class="ai-section ai-activity-suggestion" style="display: none;">
-                  <h3 class="ai-section-title">AI Activity Suggestion</h3>
-                  <div id="activity-content">
-                       <!-- AI Activity suggestion loaded here -->
-                  </div>
-             </section>
-
-             <!-- Forum section will be appended here by JS if applicable -->
-
-        </section>
     </main>
 
-    <footer class="main-footer">
-        <p>© 2023 AI LMS Platform</p>
+    <!-- App Footer (Consistent) -->
+    <footer class="app-footer">
+        <p>© 2024 EduMaster LMS. All rights reserved.</p>
     </footer>
 
-    <!-- Load shared auth logic first -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Load JS -->
     <script src="/js/auth.js"></script>
-    <!-- Then load course specific logic -->
     <script src="/js/course.js"></script>
+    <script src="/js/app-common.js"></script>
+     <!-- {/* Load common UI logic */} -->
+
 </body>
 </html>

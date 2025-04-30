@@ -1,75 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - AI LMS</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>EduMaster - Learning Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/landing-style.css">
 </head>
+
 <body>
-    <header class="main-header">
-        <div class="container header-content">
-            <h1>Dashboard - AI LMS</h1>
-            <div class="user-info">
-                <!-- User Greeting -->
-                <span id="user-greeting">Welcome!</span>
-                <!-- Phase 4: Gamification Display -->
-                <div class="user-gamification-stats">
-                    <span id="user-points" title="Total Points">Points: Loading...</span>
-                    <span id="user-badges-summary" title="Earned Badges">Badges: Loading...</span>
-                </div>
-                <button id="logout-button" class="btn btn-secondary">Logout</button>
+    <!-- navigation section  -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                EduMaster
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#courses">Courses</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="login-btn" onclick="openAuthModal('login')">Login</a>
+                <a href="#" class="signup-btn" onclick="openAuthModal('signup')">Signup</a>
+            </nav>
+            <button id="dark-mode-toggle" class="cta-button dark-mode-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-        <nav class="main-nav">
-            <div class="container">
-                <ul id="nav-links">
-                    <li><a href="/index.html">My Courses & Progress</a></li>
-                    <!-- Phase 4: Leaderboard Link -->
-                    <li><a href="/leaderboard.html">Leaderboard</a></li>
-                    <!-- Admin/Instructor links will be added dynamically if needed -->
-                     <!-- Phase 5: Link to Profile Page -->
-                    <li><a href="/profile.html">My Profile</a></li>
-                </ul>
-            </div>
-        </nav>
     </header>
 
-    <main class="container dashboard-container">
-
-        <!-- Phase 2: Analytics Section -->
-        <section id="dashboard-analytics" class="analytics-section">
-            <h2>My Progress Overview</h2>
-            <!-- Phase 5: Add Risk Level Display -->
-            <div id="user-risk-level" class="risk-level-display" style="display: none;">
-                 <!-- Content loaded by JS -->
+    <!-- login and signup section  -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+            <div id="login-view" class="auth-form">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <input type="text" id="login-username" name="username" placeholder="Username" required>
+                    <input type="password" id="login-password", name="password" placeholder="Password" required>
+                    <button type="submit" class="cta-button">Login</button>
+                    <p id="login-error-msg" class="form-error" style="display: none;"></p> 
+                    <!-- {/* Error message area */} -->
+                </form>
+                <p>Don't have an account? <a href="#" onclick="switchAuthForm('signup')">Signup</a></p>
             </div>
-            <div id="analytics-content">
-                <p>Loading analytics data...</p>
-                <!-- Analytics summaries loaded here -->
+            <div id="signup-view" class="auth-form" style="display: none;">
+                <h2>Signup</h2>
+                <form id="signup-form">
+                    <input type="text" id="signup-name" name="name" placeholder="Full Name" required>
+                    <input type="text" id="signup-username" name="username" placeholder="Username" required>
+                    <input type="email" id="signup-email" name="email" placeholder="Email" required>
+                    <input type="password" id="signup-password" name="password" placeholder="Password (min 6 chars)" required>
+                    <!-- /* Removed Confirm Password for simplicity, add validation later if needed */ -->
+                    <!-- /* <input type="password" placeholder="Confirm Password" required> */ -->
+                    <button type="submit" class="cta-button">Signup</button>
+                    <p id="signup-error-msg" class="form-error" style="display: none;"></p> 
+                    <!-- {/* Error message area */} -->
+                </form>
+                <p>Already have an account? <a href="#" onclick="switchAuthForm('login')">Login</a></p>
             </div>
-        </section>
-
-        <hr class="section-divider">
-
-        <h2>My Courses</h2>
-        <div id="course-list" class="course-grid">
-            <!-- Course cards loaded here -->
-            <p>Loading courses...</p>
         </div>
+    </div>
 
-        <!-- Placeholder for Admin/Instructor Panel Links -->
-        <div id="role-specific-links" style="margin-top: 20px;"></div>
+    <!-- Hero section  -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Transform Your Future With Online Learning</h1>
+            <p>Access 1000+ professional courses from industry experts</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Start Learning Today</a>
+                <a href="#courses" class="cta-button secondary">Explore Courses</a>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <section class="courses" id="courses">
+        <h2 class="section-title">Popular Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931" alt="Web Development" loading="lazy">
+                </div>
+                <div class="course-info">
+                    <h3>Full Stack Web Development</h3>
+                    <p>Master HTML, CSS, JavaScript and modern frameworks to build complete web applications.</p>
+                    <a href="#" class="cta-button">View Details</a>
+                </div>
+            </div>
 
-    <footer class="main-footer">
-        <p>© 2023 AI LMS Platform</p>
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1618477388954-7852f32655ec" alt="Data Science" loading="lazy">
+                </div>
+                <div class="course-info">
+                    <h3>Data Science & Analytics</h3>
+                    <p>Learn Python, machine learning, and data visualization techniques for data analysis.</p>
+                    <a href="#" class="cta-button">View Details</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1586717799252-bd134ad00e26" alt="Digital Marketing" loading="lazy">
+                </div>
+                <div class="course-info">
+                    <h3>Digital Marketing Mastery</h3>
+                    <p>Comprehensive guide to SEO, social media marketing, and online advertising strategies.</p>
+                    <a class="cta-button" href="#">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features section  -->
+    <section class="features">
+        <h2 class="section-title">Why Choose EduMaster?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-laptop-code feature-icon"></i>
+                <h3>Interactive Learning</h3>
+                <p>Engage with hands-on projects and real-world scenarios</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-certificate feature-icon"></i>
+                <h3>Certification</h3>
+                <p>Earn recognized certificates upon course completion</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-clock feature-icon"></i>
+                <h3>Lifetime Access</h3>
+                <p>Learn at your own pace with unlimited access</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div>
+                <h2 class="section-title">About EduMaster</h2>
+                <p>Founded in 2020, EduMaster has become a leading platform in online education, serving over 500,000
+                    students worldwide. Our mission is to make quality education accessible and affordable for everyone.
+                </p>
+                <br>
+                <p>We partner with top universities and companies to bring you the most relevant and up-to-date courses.
+                    Our expert instructors are passionate about sharing their knowledge and helping students succeed.
+                </p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Online Learning" class="about-image" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Students Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"EduMaster transformed my career! The courses are well-structured and the
+                    instructors are top-notch."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
+                        class="author-image" loading="lazy">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"The best investment I've made in my education. Flexible learning with
+                    real-world projects."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mike Chen" class="author-image" >
+                    <div>
+                        <h4>Mike Chen</h4>
+                        <p>Data Scientist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Affordable Pricing Plans</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Starter</h3>
+                <div class="price">$19<span>/mo</span></div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> 5 Courses Access</li>
+                    <li><i class="fas fa-check"></i> Basic Support</li>
+                    <li><i class="fas fa-check"></i> Certificate of Completion</li>
+                </ul>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+            <div class="price-card">
+                <h3>Professional</h3>
+                <div class="price">$49<span>/mo</span></div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Unlimited Courses</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
+                    <li><i class="fas fa-check"></i> Professional Certificates</li>
+                    <li><i class="fas fa-check"></i> Project Reviews</li>
+                </ul>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Tech City</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> support@edumaster.com</p>
+                <div class="social-icons" style="margin-top: 2rem;">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About EduMaster</h4>
+                <p>Leading online learning platform committed to providing quality education for everyone, everywhere.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- Load shared auth logic first -->
-    <script src="/js/auth.js"></script>
-    <!-- Then load dashboard specific logic -->
-    <script src="/js/dashboard.js"></script>
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+
+    <!-- JavaScript for mobile menu -->
+    <script src="/js/landing-script.js"></script>
 </body>
+
 </html>

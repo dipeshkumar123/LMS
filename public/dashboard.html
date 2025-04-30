@@ -1,0 +1,105 @@
+<!-- public/dashboard.html (Previously app.html - Restyled) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - EduMaster LMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Use the landing page's CSS for consistent styling -->
+    <link rel="stylesheet" href="/css/landing-style.css">
+    <!-- Add a second CSS file for app-specific overrides/additions if needed later -->
+    <!-- <link rel="stylesheet" href="/css/app-style.css"> -->
+</head>
+<body class="app-page"> 
+    <!-- {/* Add a class to distinguish app pages */} -->
+
+    <!-- App Header - Adapted from Landing Page Header -->
+    <header class="app-header">
+         <!-- {/* Use a different class potentially */} -->
+        <div class="nav-container">
+             <!-- {/* Reuse container */} -->
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                EduMaster
+            </div>
+
+            <!-- Logged-in User Info & Actions -->
+            <div class="user-info-controls">
+                 <!-- User Greeting -->
+                <span id="user-greeting" class="greeting">Welcome!</span>
+                <!-- Gamification Display -->
+                <div class="user-gamification-stats header-stats"> 
+                    <!-- {/* Reuse stats class */} -->
+                    <span id="user-points" title="Total Points">...</span>
+                    <span id="user-badges-summary" title="Earned Badges">...</span>
+                </div>
+                <!-- Profile Link -->
+                 <a href="/profile.html" class="profile-link" title="My Profile"><i class="fas fa-user-circle"></i></a>
+                <!-- Logout Button -->
+                <button id="logout-button" class="cta-button secondary btn-small logout-btn">Logout</button>
+                 <!-- Dark Mode Toggle -->
+                 <button id="dark-mode-toggle" class="cta-button dark-mode-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                 </button>
+            </div>
+             <!-- Mobile menu toggle for app nav if needed later -->
+             <!-- <div class="menu-toggle" onclick="toggleAppMenu()"> <i class="fas fa-bars"></i> </div> -->
+        </div>
+    </header>
+
+    <!-- Main App Content Area -->
+    <main class="app-main-content container"> 
+        <!-- {/* Use container class */} -->
+
+        <h1 class="page-title">My Dashboard</h1>
+
+        <!-- Analytics Section - Restyled -->
+        <section id="dashboard-analytics" class="content-section analytics-section-app"> 
+            <!-- {/* Reuse structure, new class */} -->
+            <h2 class="section-title-app">Progress Overview</h2>
+            <!-- {/* Risk Level Display */} -->
+            <div id="user-risk-level" class="risk-level-display" style="display: none;"></div>
+            <!-- {/* Analytics Cards Grid */} -->
+            <div id="analytics-content" class="analytics-grid-app">
+                <p>Loading analytics...</p>
+            </div>
+        </section>
+
+        <!-- {/* Separator (optional) */} -->
+        <hr class="section-divider">
+
+        <!-- Courses Section - Restyled -->
+        <section class="content-section courses-section-app"> 
+            <!-- {/* Reuse structure, new class */} -->
+             <h2 class="section-title-app">My Courses</h2>
+             <div id="course-list" class="course-grid">
+                 <!-- {/* Reuse course grid class from landing */} -->
+                <p>Loading courses...</p>
+             </div>
+        </section>
+
+        <!-- {/* Role Specific Links Area (optional) */} -->
+        <div id="role-specific-links" class="role-links-area"></div>
+
+    </main>
+
+    <!-- App Footer (Simplified or Reuse Landing Footer) -->
+    <footer class="app-footer">
+        <p>© 2024 EduMaster LMS. All rights reserved.</p>
+    </footer>
+
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Load JS -->
+    <script src="/js/auth.js"></script>
+     <!-- {/* Shared auth logic */} -->
+    <script src="/js/dashboard.js"></script>
+     <!-- {/* Dashboard specific logic */} -->
+    <!-- {/* Add common app script if needed later for dark mode toggle etc. */} -->
+    <script src="/js/app-common.js"></script>
+
+</body>
+</html>
